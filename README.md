@@ -6,7 +6,7 @@
 
 ## インストール
 
-このスクリプトは [Greasy Fork](https://greasyfork.org/ja/scripts/9999-tumblr-quiet-your-post) のページからインストールすることが出来ます。
+このスクリプトは [Greasy Fork](https://greasyfork.org/ja/scripts/6721-tumblr-quiet-your-post) のページからインストールすることが出来ます。
 
 インストールおよび実行するには下記のような拡張が必要になります。
 
