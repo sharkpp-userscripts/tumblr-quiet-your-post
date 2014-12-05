@@ -33,26 +33,25 @@
       }
   };
   // apply custom style sheet
-  var normalBG = '#36465d';
-  var hoverBG  = '#3c4b61';
-  var containerHeight  = '56px';
+  var BGn = '#36465d';
+  var BGh  = '#3c4b61';
+  var H = '56px';
+  // varriable define for LINE COMPACTION ...
+  var pc = 'li[class="post_container"]';
+  var is_mine = 'div[class*="is_mine"]';
+  var is_you  = 'div[data-json*=\'"is_you":true\']';
+  var post_c  = 'div[class*="post_content"]';
+  var post_f  = 'div[class*="post_footer"]';
+  // ... end
   var cssList = [
-      [ 'li[class="post_container"] > div[class*="is_mine"]',
-              'background-color: '+normalBG+' !important; height: '+containerHeight+' !important;' ],
-      [ 'li[class="post_container"]:hover > div[class*="is_mine"]',
-              'background-color: '+hoverBG+' !important; height: '+containerHeight+' !important;' ],
-      [ 'li[class="post_container"] > div[data-json*=\'"is_you":true\']',
-              'background-color: '+normalBG+' !important; height: '+containerHeight+' !important;' ],
-      [ 'li[class="post_container"]:hover > div[data-json*=\'"is_you":true\']',
-              'background-color: '+hoverBG+'!important; height: '+containerHeight+' !important;' ],
-      [ 'li[class="post_container"] > div[class*="is_mine"] div[class*="post_content"]',
-              'display: none;' ],
-      [ 'li[class="post_container"] > div[class*="is_mine"] div[class*="post_footer"]',
-              'display: none;' ],
-      [ 'li[class="post_container"] > div[data-json*=\'"is_you":true\'] div[class*="post_content"]',
-              'display: none;' ],
-      [ 'li[class="post_container"] > div[data-json*=\'"is_you":true\'] div[class*="post_footer"] ',
-              'display: none;' ]
+      [ pc+' > '+is_mine,            'background-color: '+BGn+' !important; height: '+H+' !important;' ],
+      [ pc+':hover > '+is_mine,      'background-color: '+BGh+' !important; height: '+H+' !important;' ],
+      [ pc+' > '+is_mine+' '+post_c, 'display: none;' ],
+      [ pc+' > '+is_mine+' '+post_f, 'display: none;' ],
+      [ pc+' > '+is_you,             'background-color: '+BGn+' !important; height: '+H+' !important;' ],
+      [ pc+':hover > '+is_you,       'background-color: '+BGh+' !important; height: '+H+' !important;' ],
+      [ pc+' > '+is_you+' '+post_c,  'display: none;' ],
+      [ pc+' > '+is_you+' '+post_f,  'display: none;' ]
     ];
   for (var i = 0, css; css = cssList[i]; i++) {
     addStyleRule(css[0], css[1]);
