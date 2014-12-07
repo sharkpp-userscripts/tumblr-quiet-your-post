@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Tumblr. quiet your post
 // @namespace   http://www.sharkpp.net/
-// @version     0.2
+// @version     0.3
 // @description  Quiet the post with 'is_mine' or 'is_you' tag for tumblr dashboard
 // @author      sharkpp
 // @copyright   2014, sharkpp
@@ -32,7 +32,9 @@
         sheet.insertRule(selector + '{' + declaration + '}', sheet.cssRules.length);
       }
   };
+  //------------------------------------------
   // apply custom style sheet
+  //------------------------------------------
   var BGn = '#36465d';
   var BGh  = '#3c4b61';
   var H = '32px';
@@ -71,5 +73,24 @@
   for (var i = 0, css; css = cssList[i]; i++) {
     addStyleRule(css[0], css[1]);
   }
-  // memo: data-pageable="post_XXXXXXXX"
+
+  //------------------------------------------
+  // remove pageable attr, when dom changed
+  //------------------------------------------
+      pc = 'li[@class="post_container"][@data-pageable]';
+  var xpath_of_is_mmine_or_is_you_post
+      = '//'+pc+'/div[contains(concat(" ",normalize-space(@class)," ")," is_mine ")]|' +
+        '//'+pc+'/div[contains(@data-json,"\'&quot;is_you&quot;:true\'")]';
+  function update_of_is_mmine_or_is_you_post(objects, sender) {
+    var post_of_is_mmine_or_is_you
+        = document.evaluate(xpath_of_is_mmine_or_is_you_post, document,
+                            null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+    for (var i = 0, item; item = post_of_is_mmine_or_is_you.snapshotItem(i); i++) {
+      item.parentNode.removeAttribute('data-pageable');
+    }
+  }
+  var mo = new MutationObserver(update_of_is_mmine_or_is_you_post);
+      mo.observe(document.getElementById('posts'), { childList: true });
+  update_of_is_mmine_or_is_you_post(null, null);
+
 })();
