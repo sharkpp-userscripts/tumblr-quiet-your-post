@@ -1,6 +1,8 @@
-# Tumblr. quiet your post CHANGELOG
+# CHANGELOG
 
-これは Tumblr. quiet your post の更新履歴を記録するためのファイルです。
+## 0.4 - 2014-12-17
+
+* 自分からのリブログポストの上下移動で条件が間違っていて該当ポストに止まってしまっていたのを修正
 
 ## 0.3 - 2014-12-07
 

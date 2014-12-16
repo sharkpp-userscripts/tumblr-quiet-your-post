@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Tumblr. quiet your post
 // @namespace   http://www.sharkpp.net/
-// @version     0.3
+// @version     0.4
 // @description  Quiet the post with 'is_mine' or 'is_you' tag for tumblr dashboard
 // @author      sharkpp
 // @copyright   2014, sharkpp
@@ -80,7 +80,7 @@
       pc = 'li[@class="post_container"][@data-pageable]';
   var xpath_of_is_mmine_or_is_you_post
       = '//'+pc+'/div[contains(concat(" ",normalize-space(@class)," ")," is_mine ")]|' +
-        '//'+pc+'/div[contains(@data-json,"\'&quot;is_you&quot;:true\'")]';
+        '//'+pc+'/div[contains(@data-json,\'"is_you":true\')]';
   function update_of_is_mmine_or_is_you_post(objects, sender) {
     var post_of_is_mmine_or_is_you
         = document.evaluate(xpath_of_is_mmine_or_is_you_post, document,
