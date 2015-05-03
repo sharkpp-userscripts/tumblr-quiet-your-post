@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name        Tumblr. quiet your post
 // @namespace   http://www.sharkpp.net/
-// @version     0.4
+// @version     0.5
 // @description  Quiet the post with 'is_mine' or 'is_you' tag for tumblr dashboard
 // @author      sharkpp
-// @copyright   2014, sharkpp
+// @copyright   2014-2015, sharkpp
 // @license     MIT License
 // @include     https://www.tumblr.com/dashboard*
 // ==/UserScript==
@@ -89,8 +89,10 @@
       item.parentNode.removeAttribute('data-pageable');
     }
   }
-  var mo = new MutationObserver(update_of_is_mmine_or_is_you_post);
-      mo.observe(document.getElementById('posts'), { childList: true });
-  update_of_is_mmine_or_is_you_post(null, null);
-
+  var posts = document.getElementById('posts');
+  if (posts) {
+    var mo = new MutationObserver(update_of_is_mmine_or_is_you_post);
+        mo.observe(posts, { childList: true });
+    update_of_is_mmine_or_is_you_post(null, null);
+  }
 })();
